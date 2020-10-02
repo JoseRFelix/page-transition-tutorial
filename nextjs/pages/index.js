@@ -1,23 +1,9 @@
 import { motion } from "framer-motion";
 
 export default function IndexPage() {
-  const hasWindow = typeof window !== "undefined";
-
   return (
     <motion.section exit={{ opacity: 0 }} className="space-y-12">
-      {hasWindow && (
-        <motion.div
-          className="absolute z-50 w-full bg-black"
-          initial={{ height: window.innerHeight, bottom: 0 }}
-          animate={{
-            height: 0,
-          }}
-          transition={{
-            duration: 1.5,
-            ease: [0.6, -0.05, 0.01, 0.9],
-          }}
-        />
-      )}
+      <InitialTransition />
 
       <h1 className="text-6xl font-black text-center text-accent-1">
         Welcome to tailstore!
@@ -176,3 +162,53 @@ export default function IndexPage() {
     </motion.section>
   );
 }
+
+const InitialTransition = () => {
+  const hasWindow = typeof window !== "undefined";
+
+  // This is needed for SSR frameworks, e.g. Next.js.
+  // Create React App and Gatsby don't need this.
+  if (!hasWindow) {
+    return null;
+  }
+
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <motion.div
+        className="absolute z-50 w-full bg-black"
+        initial={{ height: window.innerHeight, bottom: 0 }}
+        animate={{
+          height: 0,
+        }}
+        transition={{
+          duration: 1.5,
+          ease: [0.6, -0.05, 0.01, 0.9],
+        }}
+      />
+
+      {/* <svg className="absolute z-50 flex">
+        <pattern
+          id="pattern"
+          patternUnits="userSpaceOnUse"
+          width={750}
+          height={800}
+          className="text-white"
+        >
+          <rect className="w-full h-full fill-current" />
+        </pattern>
+        <text
+          className="text-4xl font-bold"
+          text-anchor="middle"
+          x="50%"
+          y="50%"
+          style={{ fill: "url(#pattern)" }}
+        >
+          tailstore
+        </text>
+      </svg> */}
+      {/* <div className="absolute z-50 text-4xl font-bold text-transparent bg-white bg-clip-text">
+        tailstore
+      </div> */}
+    </div>
+  );
+};
