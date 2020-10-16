@@ -30,7 +30,7 @@ const inputs = {
   },
 };
 
-const AboutPage = () => {
+const ContactPage = () => {
   return (
     <motion.section
       exit={{ opacity: 0 }}
@@ -155,4 +155,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default ContactPage;

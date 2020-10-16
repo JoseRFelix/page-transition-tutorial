@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { NavLink } from "react-router-dom";
 
 const Layout = ({ children }) => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <header className="text-gray-700 body-font">
       <div className="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
-        <Link
+        <NavLink
           to="/"
           className="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0"
         >
@@ -32,22 +32,23 @@ const Header = () => {
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </svg>
           <span className="ml-3 text-xl">tailstore</span>
-        </Link>
+        </NavLink>
         <nav className="flex flex-wrap items-center justify-center space-x-4 text-base md:ml-auto">
-          <Link
+          <NavLink
+            exact
             activeClassName="font-black text-black"
             className="hover:text-gray-900"
             to="/"
           >
             Store
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             activeClassName="font-black text-black"
             className="hover:text-gray-900"
             to="/contact"
           >
             Contact Us
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </header>
